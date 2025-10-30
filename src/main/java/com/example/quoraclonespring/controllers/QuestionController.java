@@ -1,0 +1,40 @@
+package com.example.quoraclonespring.controllers;
+
+import com.example.quoraclonespring.dtos.QuestionDTO;
+import com.example.quoraclonespring.models.Question;
+import com.example.quoraclonespring.services.QuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/v1/questions")
+public class QuestionController {
+    @Autowired
+    private QuestionService questionService;
+
+    @GetMapping
+    public List<Question> getAllQuestions(@RequestParam int page, @RequestParam int size) {
+        return questionService.getQuestions(page, size);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
+        Optional<Question> question = questionService.getQuestionById(id);
+        return question.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public Question createQuestion(@RequestBody QuestionDTO questionDTO) {
+        return questionService.createQuestion(questionDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
+        questionService.deleteQuestionById(id);
+        return ResponseEntity.noContent().build();
+    }
+}

@@ -1,6 +1,7 @@
 package com.example.quoraclonespring.services;
 
 import com.example.quoraclonespring.dtos.UserDTO;
+import com.example.quoraclonespring.models.Tag;
 import com.example.quoraclonespring.models.User;
 import com.example.quoraclonespring.repositories.TagRepository;
 import com.example.quoraclonespring.repositories.UserRepository;
@@ -36,5 +37,12 @@ public class UserService {
     }
     public void  deleteUser(Long userId) {
         userRepository.deleteById(userId);
+    }
+
+    public void followTag(Long userId, Long tagId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        Tag tag = tagRepository.findById(tagId).orElseThrow(() -> new RuntimeException("Tag not found"));
+        user.getFollowedTags().add(tag);
+        userRepository.save(user);
     }
 }

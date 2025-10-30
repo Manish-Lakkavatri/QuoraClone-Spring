@@ -24,8 +24,8 @@ public class TagService {
         return tagRepository.save(tag);
     }
 
-    public void deleteTag(Tag tag) {
-        tagRepository.delete(tag);
+    public void deleteTag(Long tagId) {
+        tagRepository.deleteById(tagId);
     }
 
     public Optional<Tag> getTagById(Long id) {

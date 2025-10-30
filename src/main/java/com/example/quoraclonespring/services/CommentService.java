@@ -24,6 +24,9 @@ public class CommentService {
     public List<Comment> getCommentsByAnswerId(Long answerId, int page, int size) {
         return commentRepository.findByAnswerId(answerId, PageRequest.of(page, size)).getContent();
     }
+    public Optional<Comment> getCommentById(Long id) {
+        return commentRepository.findById(id);
+    }
 
     public List<Comment> getRepliesByCommentId(Long CommentId, int page, int size) {
         return commentRepository.findByParentCommentId(CommentId, PageRequest.of(page, size)).getContent();
