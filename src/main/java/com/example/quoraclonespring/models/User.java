@@ -6,6 +6,8 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
+import java.util.Set;
+
 @Entity
 @Data
 public class User extends BaseModel {

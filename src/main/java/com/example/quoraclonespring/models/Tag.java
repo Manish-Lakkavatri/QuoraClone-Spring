@@ -2,9 +2,11 @@ package com.example.quoraclonespring.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import lombok.Data;
 
 import java.util.Set;
 
+@Data
 @Entity
 public class Tag extends BaseModel {
 
