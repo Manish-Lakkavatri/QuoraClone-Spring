@@ -315,11 +315,3 @@ using **CORS** or a **proxy** setup.
 
 **Manish Lakkavatri**
 🔗 [GitHub Profile](https://github.com/Manish-Lakkavatri)
-
----
-
-**License:** MIT
-**Backend:** Spring Boot + Gradle
-**Database:** PostgreSQL/MySQL
-
-```
